@@ -9,11 +9,11 @@ import feign.FeignException
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
-@Service
+@Service("feign")
 class PostOpenFeignServiceImpl(@Autowired private val client: PostOpenFeignClient) : PostService {
     override fun get(id: Int): Post {
         val post = try {
-            client.get(id)
+            client.get(id).body ?: Post(0,0,"","")
         } catch (e: FeignException) {
             println(e.status())
             println(e.responseBody())

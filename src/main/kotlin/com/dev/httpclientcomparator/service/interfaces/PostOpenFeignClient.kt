@@ -2,6 +2,7 @@ package com.dev.httpclientcomparator.service.interfaces
 
 import com.dev.httpclientcomparator.model.Post
 import org.springframework.cloud.openfeign.FeignClient
+import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestMethod
@@ -10,5 +11,5 @@ import org.springframework.web.bind.annotation.RequestMethod
 interface PostOpenFeignClient {
 
     @RequestMapping(method = [RequestMethod.GET], value = ["/posts/{id}"])
-    fun get(@PathVariable id: Int): Post
+    fun get(@PathVariable id: Int): ResponseEntity<Post>
 }
